@@ -36,7 +36,7 @@ export default function AddNews() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-4xl font-black text-white">Термінал <span className="text-orange-500">Зв'язку</span></h1>
+        <h1 className="text-4xl font-black text-white">Термінал <span className="text-orange-500">Зв&apos;язку</span></h1>
         <Link href="/" className="text-sm font-mono text-slate-400 hover:text-orange-400">
           [ ПОВЕРНУТИСЯ НА ГОЛОВНУ ]
         </Link>
