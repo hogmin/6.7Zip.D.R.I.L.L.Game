@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tools { nodejs 'NodeJS' }
+    tools { nodejs 'node-latest' }
     stages {
         stage('Install') {
             steps { bat 'npm install' }
