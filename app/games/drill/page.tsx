@@ -1,5 +1,12 @@
 import Link from "next/link";
 
+/**
+ * Сторінка гри `D.R.I.L.L.`.
+ * * @remarks
+ * Відображає розширений опис основного проєкту,
+ * а також фотогалерею з матеріалами процесу розробки.
+ * * @component
+ */
 export default function DrillGame() {
   const collagePhotos = [
     { src: "/2.png", alt: "Анімування персонажа", classes: "md:col-span-2 md:row-span-2" },
@@ -11,48 +18,51 @@ export default function DrillGame() {
 
   return (
     <div className="max-w-4xl mx-auto space-y-12">
-      <Link href="/games" className="text-orange-500 hover:text-orange-400 flex items-center gap-2">
+      <Link href="/games" className="flex items-center gap-2 font-medium" style={{ color: "var(--accent)" }}>
         ← Назад до ігор
       </Link>
-      
+
       <div className="space-y-6">
-        <h1 className="text-5xl md:text-7xl font-black text-white tracking-widest">
+        <h1 className="text-5xl md:text-7xl font-black tracking-widest" style={{ color: "var(--text-strong)" }}>
           D.R.I.L.L.
         </h1>
-        
-        <div className="bg-slate-800 rounded-xl p-8 border border-slate-700 shadow-2xl">
-          <h3 className="text-2xl font-bold mb-4 text-orange-400">Про гру</h3>
-          <p className="text-lg text-slate-300 mb-4 leading-relaxed">
-            D.R.I.L.L. — це атмосферний 3D-симулятор космічного буріння. Ви опиняєтесь у ролі незалежного шахтаря... 
+
+        <div className="theme-card-strong rounded-[1.75rem] p-8">
+          <h3 className="mb-4 text-2xl font-bold" style={{ color: "var(--accent)" }}>
+            Про гру
+          </h3>
+          <p className="mb-4 text-lg leading-relaxed" style={{ color: "var(--muted-strong)" }}>
+            D.R.I.L.L. — це атмосферний 3D-симулятор космічного буріння. Ви опиняєтесь у ролі незалежного шахтаря...
             Гра в жанрі roguelike тож вона базуэться на повторювальності перемішаної з випадковістю, завдяки чому виходить унікальний геймплей.
-            Наша ціль відремонтувати корабель щоб повернутись на землю. 
-            Ми маємо можливість видобувати в ручну ресурси у пробуреному тунелі, який генерується випадковим чином. 
-            Маємо відстрілюватись від агресивно налаштованих мешканців. Оскільки ресурсів в одному тунелі нам не вистачить на повну відбудову кораблю, ми маємо дозаправити його, щоб він пробурився далі. 
-            Процес переробки кристалів у паливо шумний, що приманює шкідників. 
-            Нам потрібно захищати корабель й себе від волн ворогів. 
+            Наша ціль відремонтувати корабель щоб повернутись на землю.
+            Ми маємо можливість видобувати в ручну ресурси у пробуреному тунелі, який генерується випадковим чином.
+            Маємо відстрілюватись від агресивно налаштованих мешканців. Оскільки ресурсів в одному тунелі нам не вистачить на повну відбудову кораблю, ми маємо дозаправити його, щоб він пробурився далі.
+            Процес переробки кристалів у паливо шумний, що приманює шкідників.
+            Нам потрібно захищати корабель й себе від волн ворогів.
             Після переробки палива корабель відправляється далі, а цикл повторюється.
           </p>
         </div>
       </div>
 
       <section>
-        <h2 className="text-3xl font-bold border-b border-slate-800 pb-2 mb-8">
+        <h2 className="mb-8 border-b pb-2 text-3xl font-bold" style={{ borderColor: "var(--border)", color: "var(--text-strong)" }}>
           Фото процесу <span className="text-orange-500">Розробки</span>
         </h2>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[150px] md:auto-rows-[200px]">
           {collagePhotos.map((photo, index) => (
-            <div 
-              key={index} 
-              className={`relative group overflow-hidden rounded-xl border border-slate-700 bg-slate-800 ${photo.classes}`}
+            <div
+              key={index}
+              className={`group relative overflow-hidden rounded-xl border ${photo.classes}`}
+              style={{ background: "var(--surface-strong)", borderColor: "var(--border)" }}
             >
-              <img 
-                src={photo.src} 
-                alt={photo.alt} 
+              <img
+                src={photo.src}
+                alt={photo.alt}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                <p className="p-4 text-sm font-bold text-white w-full truncate">
+                <p className="w-full truncate p-4 text-sm font-bold text-white">
                   {photo.alt}
                 </p>
               </div>

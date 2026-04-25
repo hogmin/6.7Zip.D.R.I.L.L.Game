@@ -1,7 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "@/app/context/ThemeContext";
+import ThemeSwitch from "@/app/Components/ThemeSwitch";
+
+/**
+ * Налаштування пунктів навігації верхнього меню сайту "d.r.i.l.l.".
+ * * @remarks
+ * Містить маршрути та підписи сторінок, які рендеряться в header.
+ */
+const navigation = [
+  { href: "/", label: "Головна" },
+  { href: "/games", label: "Ігри" },
+  { href: "/team", label: "Команда" },
+];
 /**
  * Компонент верхнього колонтитула (header) сайту "d.r.i.l.l."
  * * @remarks
@@ -10,42 +21,30 @@ import { useTheme } from "@/app/context/ThemeContext";
  * * @component
  */
 export default function Header() {
-  const { theme, setTheme } = useTheme();
-
   return (
-    <header className="bg-slate-900 border-b border-orange-500/30 p-4">
-      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        
-        <Link href="/" className="transition" style={{ color: "var(--text)" }}>
+    <header
+      className="border-b p-4 backdrop-blur-xl"
+      style={{ background: "var(--surface)", borderColor: "var(--border)" }}
+    >
+      <div className="container mx-auto flex flex-col items-center justify-between gap-4 sm:flex-row">
+        <Link href="/" className="transition-transform duration-200 hover:scale-[1.02]">
           <img src="/logo1.png" alt="Logo" className="h-14 sm:h-16 md:h-20 w-auto" />
         </Link>
 
-        <nav className="flex gap-6 md:gap-10 font-semibold text-lg sm:text-xl md:text-2xl">
-          <Link href="/" className="transition" style={{ color: "var(--text)" }}>
-            Головна
-          </Link>
-
-          <Link href="/games" className="transition" style={{ color: "var(--text)" }}>
-            Ігри
-          </Link>
-
-          <Link href="/team" className="transition" style={{ color: "var(--text)" }}>
-            Команда
-          </Link>
-        </nav>
-        <div className="flex gap-2">
-        <button 
-          onClick={() => setTheme("dark")}
-          className={theme === "dark" ? "text-orange-500" : ""}
-        >
-          Темна
-        </button>
-            <button 
-          onClick={() => setTheme("light")}
-          className={theme === "light" ? "text-orange-500" : ""}
-        >
-          Світла
-        </button>
+        <div className="flex flex-col items-center gap-4 sm:flex-row">
+          <nav className="flex flex-wrap items-center justify-center gap-3 text-base font-semibold sm:text-lg">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="theme-link rounded-full border px-4 py-2"
+                style={{ borderColor: "var(--border)" }}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <ThemeSwitch />
         </div>
       </div>
     </header>

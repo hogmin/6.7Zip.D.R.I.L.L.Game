@@ -5,12 +5,26 @@ import Link from "next/link";
 import NewsCard from "@/app/Components/NewsCard";
 import { useNews } from "@/app/context/NewsContext";
 
+/**
+ * Головна сторінка сайту "d.r.i.l.l.".
+ * * @remarks
+ * Відображає hero-блок з автоматичним слайдером,
+ * список останніх новин та посилання на створення нової публікації.
+ * * @component
+ */
 export default function Home() {
   const { news, deleteNews } = useNews();
-  
+
   const heroImages = ["/2.png", "/3.png", "/4.png"];
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  /**
+   * Запускає автоматичну зміну фонових слайдів у hero-блоці.
+   * * @remarks
+   * Таймер циклічно перемикає активне зображення кожні 5 секунд,
+   * а при демонтуванні компонента очищується.
+   * @returns Функція очищення інтервалу
+   */
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length);
@@ -20,8 +34,10 @@ export default function Home() {
 
   return (
     <div className="space-y-12">
-      <section className="relative text-center py-32 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden bg-slate-950">
-        
+      <section
+        className="relative overflow-hidden rounded-[2rem] border py-32 text-center shadow-2xl"
+        style={{ background: "var(--hero-surface)", borderColor: "var(--hero-border)" }}
+      >
         {heroImages.map((img, index) => (
           <div
             key={index}
@@ -36,6 +52,8 @@ export default function Home() {
           />
         ))}
 
+        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-cyan-400/10" />
+
         <div className="relative z-10 px-4">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-4 drop-shadow-lg">
             Занурення <span className="text-orange-500">Почалося</span>
@@ -48,10 +66,12 @@ export default function Home() {
             {heroImages.map((_, index) => (
               <button
                 key={index}
+                type="button"
                 onClick={() => setCurrentSlide(index)}
                 className={`w-3 h-3 rounded-full transition-all ${
                   index === currentSlide ? "bg-orange-500 w-6" : "bg-white/50 hover:bg-white"
                 }`}
+                aria-label={`Перейти до слайда ${index + 1}`}
               />
             ))}
           </div>
@@ -59,27 +79,39 @@ export default function Home() {
       </section>
 
       <section>
-        <div className="flex justify-between items-center border-b border-slate-800 pb-2 mb-6">
-          <h2 className="text-3xl font-bold">Останні новини</h2>
-          <Link 
-            href="/add-news" 
-            className="bg-orange-600/10 text-orange-500 border border-orange-500/50 hover:bg-orange-600 hover:text-white font-mono text-sm py-2 px-4 rounded transition"
+        <div className="mb-6 flex items-center justify-between border-b pb-2" style={{ borderColor: "var(--border)" }}>
+          <h2 className="theme-title text-3xl font-bold">Останні новини</h2>
+          <Link
+            href="/add-news"
+            className="rounded-full border px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em]"
+            style={{
+              background: "var(--accent-soft)",
+              borderColor: "var(--border-strong)",
+              color: "var(--accent)",
+            }}
           >
             + ДОДАТИ НОВИНУ
           </Link>
         </div>
-        
+
         {news.length > 0 ? (
           <div className="grid gap-6 md:grid-cols-2">
             {news.map((item) => (
-              <NewsCard 
-                key={item.id} id={item.id} date={item.date} 
-                title={item.title} description={item.description} onDelete={deleteNews} 
+              <NewsCard
+                key={item.id}
+                id={item.id}
+                date={item.date}
+                title={item.title}
+                description={item.description}
+                onDelete={deleteNews}
               />
             ))}
           </div>
         ) : (
-          <div className="text-center py-10 border border-dashed border-slate-700 rounded-xl text-slate-500 font-mono">
+          <div
+            className="rounded-2xl border border-dashed py-10 text-center font-mono"
+            style={{ borderColor: "var(--border)", color: "var(--muted)" }}
+          >
             Інфомережа порожня. Немає нових повідомлень.
           </div>
         )}

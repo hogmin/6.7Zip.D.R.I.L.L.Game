@@ -8,26 +8,27 @@ import Link from "next/link";
  */
 export default function Footer() {
   return (
-      <footer 
-        className="p-6 mt-12"
-        style={{ background: "var(--card)", borderColor: "var(--border)" }}
-      >
-      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-50"></div>   
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-slate-400 text-base">
+    <footer
+      className="relative mt-12 border-t p-6"
+      style={{ background: "var(--surface)", borderColor: "var(--border)" }}
+    >
+      <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-50"></div>
+      <div className="container mx-auto flex flex-col items-center justify-between gap-6 text-base md:flex-row">
         <div className="mb-4 md:mb-0 text-center md:text-left">
-          <p>© {new Date().getFullYear()} D.R.I.L.L. Studio. Всі права захищено.</p>
-          
-          <p className="mt-1 font-mono text-sm text-slate-500">Система життєзабезпечення: ОНЛАЙН</p>
+          <p style={{ color: "var(--text-strong)" }}>© {new Date().getFullYear()} D.R.I.L.L. Studio. Всі права захищено.</p>
+          <p className="mt-1 font-mono text-sm" style={{ color: "var(--muted)" }}>
+            Система життєзабезпечення: ОНЛАЙН
+          </p>
         </div>
-        
+
         <div className="flex gap-6">
-          <Link href="#" className="hover:text-orange-400 transition hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]">
+          <Link href="#" className="theme-link font-medium">
             Discord
           </Link>
-          <Link href="#" className="hover:text-orange-400 transition hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]">
+          <Link href="#" className="theme-link font-medium">
             YouTube
           </Link>
-          <Link href="#" className="hover:text-orange-400 transition hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.8)]">
+          <Link href="#" className="theme-link font-medium">
             Twitter
           </Link>
         </div>

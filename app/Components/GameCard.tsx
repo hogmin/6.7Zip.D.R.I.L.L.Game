@@ -14,33 +14,38 @@ import { GameCardProps } from "../types/GameCardProps";
  */
 export default function GameCard({ title, description, link, imageSrc }: GameCardProps) {
   return (
-      <div 
-        className="rounded-xl p-6 border"
-        style={{ background: "var(--card)", borderColor: "var(--border)" }}
-      >      
-      <div className="md:w-1/3 bg-slate-800 flex items-center justify-center border-b md:border-b-0 md:border-r border-slate-700 relative min-h-[200px]">
+    <article className="theme-card overflow-hidden rounded-[1.75rem] md:grid md:grid-cols-[minmax(0,0.95fr)_1.05fr]">
+      <div
+        className="relative flex min-h-[220px] items-center justify-center border-b md:border-b-0 md:border-r"
+        style={{ background: "var(--surface-strong)", borderColor: "var(--border)" }}
+      >
         {imageSrc ? (
-          <img 
-            src={imageSrc} 
-            alt={title} 
-            className="w-full h-full object-cover"
+          <img
+            src={imageSrc}
+            alt={title}
+            className="h-full w-full object-cover"
           />
         ) : (
-          <span className="text-6xl font-black text-orange-500/20 tracking-tighter p-8">{title}</span>
+          <span className="p-8 text-6xl font-black tracking-tighter text-orange-500/20">{title}</span>
         )}
       </div>
-      <div className="p-8 md:w-2/3 flex flex-col justify-center">
-        <h2 className="text-3xl font-black text-white mb-2">{title}</h2>
-        <p className="text-slate-400 mb-6 line-clamp-3">{description}</p>
+      <div className="flex flex-col justify-center p-8">
+        <h2 className="mb-3 text-3xl font-black" style={{ color: "var(--text-strong)" }}>
+          {title}
+        </h2>
+        <p className="mb-6 leading-relaxed" style={{ color: "var(--muted)" }}>
+          {description}
+        </p>
         <div>
-          <Link 
-            href={link} 
-            className="inline-block bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-6 rounded-lg transition"
+          <Link
+            href={link}
+            className="inline-block rounded-full px-6 py-3 font-bold text-white"
+            style={{ background: "var(--accent)" }}
           >
             Детальніше про гру
           </Link>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
