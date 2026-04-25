@@ -1,5 +1,12 @@
 import TeamMemberCard from "@/app/Components/TeamMemberCard";
 
+/**
+ * Сторінка команди сайту "d.r.i.l.l.".
+ * * @remarks
+ * Відображає перелік учасників команди 6.7Zip,
+ * їх ролі у проєкті та короткі описи обов`язків.
+ * * @component
+ */
 export default function Team() {
   const teamMembers = [
     { name: "Степін Сергій", role: "Scrum Master", desc: "Генерує божевільні ідеї, щоб створити ідеальний шедевр жанру." },
@@ -10,16 +17,18 @@ export default function Team() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8">Учасники команди 6.7Zip</h1>
-      
+    <div className="mx-auto max-w-4xl">
+      <h1 className="mb-8 text-4xl font-bold" style={{ color: "var(--text-strong)" }}>
+        Учасники команди 6.7Zip
+      </h1>
+
       <div className="grid gap-6 md:grid-cols-3">
         {teamMembers.map((member, idx) => (
-          <TeamMemberCard 
-            key={idx} 
-            name={member.name} 
-            role={member.role} 
-            desc={member.desc} 
+          <TeamMemberCard
+            key={idx}
+            name={member.name}
+            role={member.role}
+            desc={member.desc}
           />
         ))}
       </div>
