@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import ThemeSwitch from "@/app/Components/ThemeSwitch";
 
@@ -27,8 +28,18 @@ export default function Header() {
       style={{ background: "var(--surface)", borderColor: "var(--border)" }}
     >
       <div className="container mx-auto flex flex-col items-center justify-between gap-4 sm:flex-row">
-        <Link href="/" className="transition-transform duration-200 hover:scale-[1.02]">
-          <img src="/logo1.png" alt="Logo" className="h-14 sm:h-16 md:h-20 w-auto" />
+        <Link
+          href="/"
+          className="relative block h-14 w-[160px] transition-transform duration-200 hover:scale-[1.02] sm:h-16 sm:w-[180px] md:h-20 md:w-[220px]"
+        >
+          <Image
+            src="/logo1.png"
+            alt="Логотип d.r.i.l.l."
+            fill
+            priority
+            sizes="(min-width: 768px) 220px, (min-width: 640px) 180px, 160px"
+            className="object-contain"
+          />
         </Link>
 
         <div className="flex flex-col items-center gap-4 sm:flex-row">

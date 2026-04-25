@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { GameCardProps } from "../types/GameCardProps";
 /**
@@ -20,10 +21,12 @@ export default function GameCard({ title, description, link, imageSrc }: GameCar
         style={{ background: "var(--surface-strong)", borderColor: "var(--border)" }}
       >
         {imageSrc ? (
-          <img
+          <Image
             src={imageSrc}
             alt={title}
-            className="h-full w-full object-cover"
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
           />
         ) : (
           <span className="p-8 text-6xl font-black tracking-tighter text-orange-500/20">{title}</span>

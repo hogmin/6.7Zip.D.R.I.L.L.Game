@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useSyncExternalStore, type ReactNode } from "react";
 import { type AppTheme, useTheme } from "@/app/context/ThemeContext";
+
+const emptySubscribe = () => () => {};
 
 /**
  * Варіанти тем, доступні в перемикачі оформлення сайту "d.r.i.l.l.".
@@ -40,18 +42,7 @@ const themeOptions: Array<{ value: AppTheme; label: string; icon: ReactNode }> =
  */
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  /**
-   * Позначає компонент як змонтований на клієнті.
-   * * @remarks
-   * Використовується для безпечного визначення активної теми
-   * лише після завершення гідратації React.
-   * @returns Функція завершення ефекту React
-   */
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
 
   const activeTheme = mounted ? theme : "dark";
 
